@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('homepage.home', ['title' => 'Home']);
+        return view('guestPages.home', ['title' => 'Home']);
     }
+    
     public function re(){
-        return redirect('/home');
+        return redirect('guestPages.home');
     }
 }

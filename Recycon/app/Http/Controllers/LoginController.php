@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index(){
-        return view('login.login', ['title' => 'Login']);
+        return view('authenticationPages.login', ['title' => 'Login']);
     }
 }
