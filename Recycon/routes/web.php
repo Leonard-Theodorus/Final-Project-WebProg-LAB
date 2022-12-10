@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::get('/', [HomeController::class , 're']);
 
 Route::get('/home', [HomeController::class , 'index'])->name('home');
 
-Route::get('/login', [LoginController::class , 'index'])->name('login');
+Route::get('/login', [LoginController::class , 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+Route::post('/register', [RegisterController::class , 'store']);
+
+Route::get('/product', [ProductController::class, 'index'])->name('showproduct');
