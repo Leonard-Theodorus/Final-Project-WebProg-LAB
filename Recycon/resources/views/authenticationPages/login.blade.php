@@ -2,7 +2,21 @@
 
 @section('content')
 <div class="flex justify-center items-center min-h-full w-full mt-24">
-    <form action="/login" method="post" class="flex flex-col w-1/4 space-y-4">
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
+    @if(session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{session('loginError')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
+    <form action="{{ route('login') }}" method="post" class="flex flex-col w-1/4 space-y-4">
         <h1 class="text-sky-900 text-xl">Please Sign In</h1>
         @csrf
         <input class="border p-4" type="email" name="email" required autofocus value="{{old ('email')}}" id="floatingInput" placeholder="Email">

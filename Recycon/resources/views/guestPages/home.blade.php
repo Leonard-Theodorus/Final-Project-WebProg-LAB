@@ -9,5 +9,5 @@
 <div class="flex flex-col items-center px-48 space-y-4 my-8">
     <h1 class="text-green-600 text-4xl">ABOUT US</h1>
     <h2 class="border-dotted border-2 border-sky-900 w-full text-center py-4 text-2xl">We are a shop for buying recycle things and second hand things</h2>
-</div>
+</div>  
 @endsection
