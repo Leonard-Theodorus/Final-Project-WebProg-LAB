@@ -7,11 +7,12 @@
         @csrf
         <input type="text" name="name" class="border p-4 @error('name')is-invalid @enderror" required autofocus value="{{old ('name')}}" id="floatingInput" placeholder="Full Name">
         @error('name')
+        {{-- Mungkin warna textnya jadiin merah untuk yang error2 disini --}}
             <div class="invalid-feedback">
                 {{$message}}
             </div>
         @enderror
-        
+
         <input type="email" name="email" class="border p-4 @error('email') is-invalid @enderror" required  value="{{old ('email')}}" id="floatingInput" placeholder="name@example.com">
         @error('email')
             <div class="invalid-feedback">
