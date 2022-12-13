@@ -7,29 +7,28 @@
         @csrf
         <input type="text" name="name" class="border p-4 @error('name')is-invalid @enderror" required autofocus value="{{old ('name')}}" id="floatingInput" placeholder="Full Name">
         @error('name')
-        {{-- Mungkin warna textnya jadiin merah untuk yang error2 disini --}}
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-red-500">
                 {{$message}}
             </div>
         @enderror
 
         <input type="email" name="email" class="border p-4 @error('email') is-invalid @enderror" required  value="{{old ('email')}}" id="floatingInput" placeholder="name@example.com">
         @error('email')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-red-500">
                 {{$message}}
             </div>
         @enderror
 
         <input type="password" name="password" required class="border p-4 @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password">
         @error('password')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-red-500">
                 {{$message}}
             </div>
         @enderror
 
         <input type="password" name="repassword" class="border p-4 @error('repassword') is-invalid @enderror" id="floatingPassword" placeholder="Re-enter password">
         @error  ('repassword')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-red-500">
                 {{$message}}
             </div>
         @enderror

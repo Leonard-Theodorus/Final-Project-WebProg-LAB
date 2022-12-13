@@ -21,3 +21,7 @@ Route::get('/editprofile', [HomeController::class , 'editprofile'])->middleware(
 Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
+
+// Harus diubah.
+Route::view('/cart', 'userPages.cart', ['title'=> 'cart'])->name('cart');
+Route::view('/transactionhistory', 'userPages.transactionhistory', ['title'=> 'transactionhistory'])->name('transactionhistory');
