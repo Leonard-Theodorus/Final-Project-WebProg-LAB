@@ -23,6 +23,10 @@ Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
+// Harus diubah.
+Route::view('/cart', 'userPages.cart', ['title'=> 'cart'])->name('cart');
+Route::view('/transactionhistory', 'userPages.transactionhistory', ['title'=> 'transactionhistory'])->name('transactionhistory');
+
 Route::get('/viewitem', [HomeController::class , 'adminViewItem'])->name('viewitem'); //tambahin admin middleware
 Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);
 Route::post('/updateitem', [AdminController::class , 'adminUpdateItem'])->name('updateitem'); // tambahin admin middleware

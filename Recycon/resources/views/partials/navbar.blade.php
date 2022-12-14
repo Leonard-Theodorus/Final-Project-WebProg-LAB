@@ -3,7 +3,6 @@
         <a href="{{ route('home') }}" class="text-white hover:font-bold" aria-current="page">Home</a>
         <a href="{{ route('showproduct') }}" class="text-white hover:font-bold">Show Product</a>
     </div>
-    {{-- Authentication --}}
     @auth
     <div class="space-x-4 p-1 flex ml-2 place-self-start items-center w-fit">
         <a href="/cart" class="text-white hover:font-bold">My Cart</a>
@@ -17,9 +16,10 @@
         </form>
 
         <li class="relative inline-block">
-            <button id="dropdownBtn" onclick="myFunction()" class="text-white hover:font-bold active:font-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</BUTTON>
+            <button id="dropdownBtn" onclick="myFunction()" class="text-white hover:font-bold active:font-bold flex items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="mr-2">Profile</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/> </svg></BUTTON>
             <ul id="myDropdown" class="w-48 absolute flex flex-col bg-white rounded shadow-md mt-2 hidden">
-                {{-- <li><a class="px-4 py-2 block font-semibold text-gray-700 hover:bg-sky-700 hover:text-white" href="/#">{{auth()->user()->name}}</a></li> --}}
+                @auth <li><a class="px-4 py-2 block font-semibold text-gray-700 hover:bg-sky-700 hover:text-white" href="/#">{{auth()->user()->name}}</a></li> @endauth
+                <li><hr class="bg-sky-700 m-0"></li>
                 <li><a class="px-4 py-2 block font-semibold text-gray-700 hover:bg-sky-700 hover:text-white" href="/editprofile">Edit Profile</a></li>
                 <li><a class="px-4 py-2 block font-semibold text-gray-700 hover:bg-sky-700 hover:text-white" href="/changepassword">Change Password</a></li>
             </ul>

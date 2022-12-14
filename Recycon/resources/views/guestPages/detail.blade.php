@@ -10,7 +10,7 @@
                 <h5 class="text-md   text-gray-500">{{$product->category}}</h5>
             </div>
             {{-- //Harganya belum disesuain sama harga barangnya beneran --}}
-            <h5 class="text-md mb-4 text-gray-500">IDR. 20.000</h5>
+            <h5 class="text-md mb-4 text-gray-500">IDR. {{ $product->price }}</h5>
             <h5 class="text-xl">{{$product->description}}</h5>
             @auth
                 {{-- nanti dimasukin UI buat customer select quantity sama buy yang ke direct ke cart --}}
