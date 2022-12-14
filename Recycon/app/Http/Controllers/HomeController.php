@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,11 @@ class HomeController extends Controller
             return redirect(route('changepassword'))->with('success', 'Password sucessfully changed!');
         }
         return back()->with('changePasswordError', 'Password Incorrect');
+    }
+
+    public function adminViewItem(){
+        $products = Product::all();
+        return view('adminPages.viewitem', ['title' => 'Manage Item', 'products' => $products]);
     }
 
 }

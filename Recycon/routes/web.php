@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -21,3 +22,7 @@ Route::get('/editprofile', [HomeController::class , 'editprofile'])->middleware(
 Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
+
+Route::get('/viewitem', [HomeController::class , 'adminViewItem'])->name('viewitem'); //tambahin admin middleware
+Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);
+Route::post('/updateitem', [AdminController::class , 'adminUpdateItem'])->name('updateitem'); // tambahin admin middleware

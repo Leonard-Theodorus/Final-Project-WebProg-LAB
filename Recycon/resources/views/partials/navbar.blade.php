@@ -8,9 +8,12 @@
     <div class="space-x-4 p-1 flex ml-2 place-self-start items-center w-fit">
         <a href="/cart" class="text-white hover:font-bold">My Cart</a>
         <a href="/history" class="text-white hover:font-bold">Transaction History</a>
+        @can('admin')
+        @endcan
+        <a href="/viewitem" class="text-white hover:font-bold">Manage Item</a>
         <form class="flex space-x-4" role="search">
             <input class="w-96 h-8 rounded-md pl-4" type="search" placeholder="Search" aria-label="Search">
-            <button class="py-1 px-2 border border-green-800 rounded-md hover:font-bold text-white" type="submit">Search</button> 
+            <button class="py-1 px-2 border border-green-800 rounded-md hover:font-bold text-white" type="submit">Search</button>
         </form>
 
         <li class="relative inline-block">
