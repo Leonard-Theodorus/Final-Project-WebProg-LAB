@@ -5,15 +5,19 @@
     <form action="{{ route('editprofile') }}" method="post" class="flex flex-col w-1/4 space-y-4">
         <h1 class="text-sky-900 text-xl">Edit Profile</h1>
         @csrf
-        <input class="border p-4" type="text" name="username" required autofocus value="{{old ('username')}}" placeholder="Enter new username">
-        
+        <input class="border p-4 @error('username')
+            is-invalid
+        @enderror" type="text" name="username" required autofocus value="{{old ('username')}}" placeholder="Enter new username">
+
         @error('username')
         <div class="invalid-feedback text-red-500">
             {{$message}}
         </div>
         @enderror
-        <input class="border p-4" type="email" name="email" required value="{{old ('email')}}" id="floatingInput" placeholder="Enter new email">
-        
+        <input class="border p-4 @error('email')
+            is-invalid
+        @enderror" type="email" name="email" required value="{{old ('email')}}" id="floatingInput" placeholder="Enter new email">
+
         @error('email')
         <div class="invalid-feedback text-red-500">
             {{$message}}

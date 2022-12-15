@@ -31,12 +31,18 @@
             <tr>
                 <td class="text-left py-3 px-4">{{$product->id}}</td>
                 <td class="text-left py-3 px-4">{{$product->item_id}}</td>
-                <td class="text-left py-3 px-4"><img style="width: 200px; height: 200px;" src={{$product->product_img}} alt="product image"></td>
+                <td class="text-left py-3 px-4">
+                  @if (str_starts_with($product->product_img , 'https'))
+                  <img style="width: 200px; height: 200px" src= {{$product->product_img}} alt="">
+                  @else
+                  <img style="width: 200px; height: 200px" src= {{asset('storage/'. $product->product_img)}} alt="">
+                  @endif
+                </td>
                 <td class="text-left py-3 px-4">{{$product->product_name}}</td>
                 <td class="text-left py-3 px-4">{{$product->description}}</td>
                 <td class="text-left py-3 px-4">{{$product->price}}</td>
                 <td class="text-left py-3 px-4">{{$product->category}}</td>
-                <form action={{route('updateitem', ['product_update_id' => $product->id])}} method="post">
+                <form action={{route('updateitem', ['product_update_id' => $product->item_id])}} method="GET">
                     @csrf
                     <td class="text-left py-3 px-4"><button class="w-24 bg-yellow-300 rounded-md py-2 self-end hover:font-bold" type="submit">Update</button></td>
                 </form>

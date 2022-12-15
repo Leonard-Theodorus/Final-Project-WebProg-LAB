@@ -42,9 +42,6 @@ class HomeController extends Controller
         $hashed_password = Auth::user()->getAuthPassword();
         $old_password = $req['old_pass'];
         if(Hash::check($old_password, $hashed_password)){
-            $custom_message = [
-                'new_pass_re.same:new_pass' => "Password must match"
-            ];
             $new_credentials = $req->validate([
                 'new_pass' => ['required', 'min:6', 'max:255'],
                 'new_pass_re' => ['required', 'same:new_pass']
@@ -55,11 +52,6 @@ class HomeController extends Controller
             return redirect(route('changepassword'))->with('success', 'Password sucessfully changed!');
         }
         return back()->with('changePasswordError', 'Password Incorrect');
-    }
-
-    public function adminViewItem(){
-        $products = Product::all();
-        return view('adminPages.viewitem', ['title' => 'Manage Item', 'products' => $products]);
     }
 
 }
