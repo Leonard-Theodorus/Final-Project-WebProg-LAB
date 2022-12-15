@@ -25,7 +25,7 @@ Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
 // Harus diubah.
 Route::view('/cart', 'userPages.cart', ['title'=> 'cart'])->name('cart');
-Route::view('/transactionhistory', 'userPages.transactionhistory', ['title'=> 'transactionhistory'])->name('transactionhistory');
+Route::view('/history', 'userPages.transactionhistory', ['title'=> 'transactionhistory'])->name('transactionhistory');
 
 Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem'); //tambahin admin middleware ->middleware('admin')
 Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);
