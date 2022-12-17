@@ -23,7 +23,6 @@ Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
-// Harus diubah.
 Route::get('/cart', [ProductController::class, 'showcart'])->name('cart');
 Route::post('/cart', [ProductController::class ,'insert_to_cart']);
 Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart');
@@ -39,3 +38,4 @@ Route::post('/updateitem/{product_update_id}', [AdminController::class , 'update
 
 Route::get('/additem', [AdminController::class, 'adminAddItem'])->name('additem')->middleware('admin');
 Route::post('/additem', [AdminController::class, 'addItemLogic']);
+Route::view('/noitem', 'guestPages.noproduct', ['title' => 'Error 404   ']);

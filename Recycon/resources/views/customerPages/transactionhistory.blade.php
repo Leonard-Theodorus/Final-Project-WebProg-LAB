@@ -1,10 +1,8 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <div style="min-height: 75vh" class="flex flex-col px-32 my-8">
+    <div style="min-height: 75vh" class="flex flex-col px-32 my-8 pb-16">
         <h1 class="font-semibold text-2xl mb-4">My Transaction History</h1>
-
-
         @if(!$empty)
             @foreach ($dates as $date)
                 @php
@@ -89,11 +87,9 @@
                             </tbody>
                         </table>
                     </div>
-
             @endforeach
-
             @else
-                <h2 class="font-normal text-lg mt-60 place-self-center">No Transactions!, Let's go shopping :)</h2>
+            <h2 class="font-normal text-lg mt-60 place-self-center">No Transactions!, Let's go shopping :)</h2>
         @endif
     </div>
 @endsection

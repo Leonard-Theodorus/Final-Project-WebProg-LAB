@@ -3,19 +3,10 @@
 @section('content')
     <div class="flex flex-col my-8">
     <h1 class="text-center text-sky-900 text-4xl font-normal">Our Products</h1>
+    {{-- If no product --}}
+    {{-- <h2 class="font-normal text-lg mt-60 place-self-center">We are sorry, no such product with those keywords.</h2> --}}
+    {{-- If there is --}}
     <div class="px-12 flex flex-wrap w-full justify-evenly py-8">
-    @if(session()->has('add_to_cart_success'))
-        <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
-            {{session('add_to_cart_success')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    @if(session()->has('checkout_success'))
-        <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
-            {{session('checkout_success')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
     @foreach ($products as $product)
         <div class="w-1/4 mx-8 shadow-sm border border-yellow-400 rounded-md mb-8">
             @if (str_starts_with($product->product_img , 'https'))
@@ -37,8 +28,19 @@
         </div>
         @endforeach
     </div>
-    <div class="flex justify-center items-center">
+    <div class="flex flex-col justify-center items-center">
+        @if(session()->has('add_to_cart_success'))
+        <div class="alert alert-success alert-dismissible fade show text-green-500 my-4" role="alert">
+            {{session('add_to_cart_success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        @if(session()->has('checkout_success'))
+            <div class="alert alert-success alert-dismissible fade show text-green-500 my-4" role="alert">
+                {{session('checkout_success')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         {{$products->links()}}
     </div>
-
 @endsection

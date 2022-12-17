@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <div style="min-height: 75vh" class="flex flex-col px-32 my-8">
+    <div style="min-height: 75vh" class="flex flex-col px-32 my-8 pb-16">
         @if(session()->has('update_cart_success'))
             <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
                 {{session('update_cart_success')}}
@@ -15,7 +15,6 @@
             </div>
         @endif
         <h1 class="font-semibold text-2xl mb-4">My Cart</h1>
-
     @if (!$empty)
         <table class="table-fixed mb-4">
             <thead>
