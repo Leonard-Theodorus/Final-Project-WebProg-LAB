@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="flex flex-col min-h-full w-full pt-8 px-36 pb-16">
-    {{-- Success --}}
     @if(session()->has('update_item_success'))
     <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
         {{session('update_item_success')}}
@@ -14,7 +13,6 @@
     <form enctype="multipart/form-data" method="post" class="flex flex-col space-y-2">
         @csrf
         <div class="flex space-x-4">
-            {{-- Input Item ID --}}
             <div class="flex flex-col">
                 <label for="update_item_ID" class="font-semibold text-lg">Item ID</label>
                 <input class="border p-4 @error('update_item_ID')
@@ -26,7 +24,6 @@
                     </div>
                 @enderror
             </div>
-            {{-- Input Item Price --}}
             <div class="flex flex-col">
                 <label for="update_item_price" class="font-semibold text-lg">Item Price</label>
                 <input class="border p-4 @error('update_item_price')
@@ -38,7 +35,6 @@
                     </div>
                 @enderror
             </div>
-            {{-- Input Item Category = Dropdown --}}
             <div class="flex flex-col">
                 <label for="update_item_category" class="font-semibold text-lg">Item Category</label>
                 <select class="border p-4 @error('update_item_category')
@@ -55,7 +51,6 @@
                 @enderror
             </div>
         </div>
-        {{-- Input Item Name --}}
         <div class="flex flex-col">
             <label for="update_item_name" class="font-semibold text-lg">Item Name</label>
             <input class="border p-4 @error('update_item_name')
@@ -67,7 +62,6 @@
                 </div>
             @enderror
         </div>
-        {{-- Input Item Desc --}}
         <div class="flex flex-col">
             <label for="update_item_desc" class="font-semibold text-lg">Item Desc</label>
             <input class="border p-4 @error('update_item_desc')
@@ -85,7 +79,6 @@
         </div>
 
         <div class="flex space-x-4">
-            {{-- Item Image --}}
             <div class="flex flex-col">
                 <label class="font-semibold text-lg" for="item_image">Item Image</label>
                 @if (str_starts_with($product->product_img , 'https'))

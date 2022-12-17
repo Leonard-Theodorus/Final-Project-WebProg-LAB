@@ -14,7 +14,6 @@
     <div class="overflow-hidden rounded-md mb-32">
         <table class="min-w-full bg-white border-2 border-sky-900">
             <thead>
-                {{-- bisa buat setiap ganjil/genap trnya kasih bg-yellow-100 atau bg-orange-100 ga? --}}
                 <tr class="font-bold text-md text-left bg-yellow-100 ">
                     <th class="p-2 border-r border-r-sky-900 border-b border-b-sky-900">No</th>
                     <th class="p-2 border-r border-r-sky-900 border-b border-b-sky-900">Item Id</th>

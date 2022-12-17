@@ -54,4 +54,14 @@ class HomeController extends Controller
         return back()->with('changePasswordError', 'Password Incorrect');
     }
 
+    public function search(Request $req){
+        $keyword = $req->search_keyword;
+        $products = Product::where('product_name', 'LIKE', "%$keyword%")->get();
+        if(count($products) != 0){
+            return view('guestPages.productsearch', ['title' => 'Product Search', 'products' => $products, 'keyword' => $keyword]);
+        }
+        else{
+            return view('guestPages.noproduct', ['title' => 'Product Not Found!']);
+        }
+    }
 }

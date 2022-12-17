@@ -15,7 +15,6 @@
             <h5 class="text-md mb-4 text-gray-500">IDR. {{ $product->price }}</h5>
             <h5 class="text-md">{{$product->description}}</h5>
             @auth
-                {{-- nanti dimasukin UI buat customer select quantity sama buy yang ke direct ke cart --}}
                 <form class="w-full flex mt-2 space-evenly" method="post" action= {{route('cart')}}>
                     @csrf
                     <div class="flex flex-col">

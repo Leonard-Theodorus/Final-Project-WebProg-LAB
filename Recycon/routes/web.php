@@ -23,19 +23,19 @@ Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
-Route::get('/cart', [ProductController::class, 'showcart'])->name('cart');
+Route::get('/cart', [ProductController::class, 'showcart'])->name('cart'); //tambahin middleware customer ->middleware('customer')
 Route::post('/cart', [ProductController::class ,'insert_to_cart']);
-Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart');
+Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart'); //tambahin middleware customer ->middleware('customer')
 Route::post('/cart/update/{item_id}', [ProductController::class, 'update_cart_logic']);
-Route::post('/cart/deleted', [ProductController::class, 'delete_cart_item'])->name('deletecart');
-Route::post('/cart/checkout', [ProductController::class, 'checkout'])->name('checkout');
-Route::get('/history', [ProductController::class, 'show_transaction_history'])->name('transactionhistory');
+Route::post('/cart/deleted', [ProductController::class, 'delete_cart_item'])->name('deletecart'); //tambahin middleware customer ->middleware('customer')
+Route::post('/cart/checkout', [ProductController::class, 'checkout'])->name('checkout'); //tambahin middleware customer ->middleware('customer')
+Route::get('/history', [ProductController::class, 'show_transaction_history'])->name('transactionhistory'); //tambahin middleware customer ->middleware('customer')
 
-Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem')->middleware('admin'); //tambahin admin middleware ->middleware('admin')
+Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem')->middleware('admin');
 Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);
-Route::get('/updateitem/{product_update_id}', [AdminController::class , 'adminUpdateItem'])->name('updateitem')->middleware('admin'); // tambahin admin middleware ->middleware('admin')
+Route::get('/updateitem/{product_update_id}', [AdminController::class , 'adminUpdateItem'])->name('updateitem')->middleware('admin');
 Route::post('/updateitem/{product_update_id}', [AdminController::class , 'updateItemLogic']);
 
 Route::get('/additem', [AdminController::class, 'adminAddItem'])->name('additem')->middleware('admin');
 Route::post('/additem', [AdminController::class, 'addItemLogic']);
-Route::view('/noitem', 'guestPages.noproduct', ['title' => 'Error 404   ']);
+Route::post('/search', [HomeController::class, 'search'])->name('search');

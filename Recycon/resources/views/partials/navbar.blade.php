@@ -5,8 +5,11 @@
     </div>
     @auth
     <div class="space-x-4 p-1 flex ml-2 place-self-start items-center w-fit">
-        <a href="/cart" class="text-white hover:font-bold">My Cart</a>
-        <a href="/history" class="text-white hover:font-bold">Transaction History</a>
+        @cannot('admin')
+            <a href="/cart" class="text-white hover:font-bold">My Cart</a>
+            <a href="/history" class="text-white hover:font-bold">Transaction History</a>
+
+        @endcannot
         @can('admin')
             <li class="relative inline-block">
                 <button id="dropdownBtn" onclick="myFunction2()" class="text-white hover:font-bold active:font-bold flex items-center" href="#" role="button" data-bs-toggle="dropdown"
@@ -19,8 +22,9 @@
                 </ul>
             </li>
         @endcan
-        <form class="flex space-x-4" role="search">
-            <input class="w-96 h-8 rounded-md pl-4" type="search" placeholder="Search" aria-label="Search">
+        <form action= {{route('search')}} class="flex space-x-4" role="search" method="post">
+            @csrf
+            <input class="w-96 h-8 rounded-md pl-4" name="search_keyword" type="search" placeholder="Search" aria-label="Search">
             <button class="py-1 px-2 border border-green-800 rounded-md hover:font-bold text-white" type="submit">Search</button>
         </form>
 
