@@ -24,10 +24,14 @@ class RegisterController extends Controller
             'repassword.same' => "Pasword must match"
         ]
         );
-        if(str_contains('admin', $validated['name'])){
+        $lower_name = strtolower($validated['name']);
+        $lower_admin = strtolower("admin");
+        if(str_contains($lower_name, $lower_admin)){
             $validated['is_admin'] = true;
         }
-        $validated['is_admin'] = false;
+        else{
+            $validated['is_admin'] = false;
+        }
         $validated['password'] = Hash::make($validated['password']);
         User::create($validated);
         return redirect('/login')->with('success', 'Sign-up sucessful! Please login');

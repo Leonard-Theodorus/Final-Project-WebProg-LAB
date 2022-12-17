@@ -4,9 +4,25 @@
     <div class="flex flex-col my-8">
     <h1 class="text-center text-sky-900 text-4xl font-normal">Our Products</h1>
     <div class="px-12 flex flex-wrap w-full justify-evenly py-8">
+    @if(session()->has('add_to_cart_success'))
+        <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
+            {{session('add_to_cart_success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if(session()->has('checkout_success'))
+        <div class="alert alert-success alert-dismissible fade show text-green-500" role="alert">
+            {{session('checkout_success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @foreach ($products as $product)
         <div class="w-1/4 mx-8 shadow-sm border border-yellow-400 rounded-md mb-8">
-            <img class="w-full h-52" src="{{$product->product_img}}" class=" bg-cover" alt="" width="400px" height="150px">
+            @if (str_starts_with($product->product_img , 'https'))
+                <img class="w-full h-52" src="{{$product->product_img}}" class=" bg-cover" alt="Product Image" width="400px" height="150px">
+            @else
+                <img class="w-full h-52" src="{{asset('storage/'. $product->product_img)}}" class=" bg-cover" alt="Product Image" width="400px" height="150px">
+            @endif
             <div class="flex flex-col p-4">
                 <div class="flex justify-between">
                     <h5 class="text-xl">{{$product->product_name}}</h5>

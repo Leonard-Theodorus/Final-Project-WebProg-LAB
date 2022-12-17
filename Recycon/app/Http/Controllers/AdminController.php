@@ -32,7 +32,8 @@ class AdminController extends Controller
             'update_item_img' => ['required', 'image']
         ],);
         if($req->file('update_item_img')){
-            $validated['update_item_img'] = $req->file('update_item_img')->store('new-images');
+            $og_filename = $req->file('update_item_img')->getClientOriginalName();
+            $validated['update_item_img'] = $req->file('update_item_img')->storeAs('new-images', $og_filename);
         }
         DB::table('products')->where('item_id', '=', $req->old_product_id)->update([
             'item_id' => $validated['update_item_ID'],
@@ -43,5 +44,31 @@ class AdminController extends Controller
             'product_img' => $validated['update_item_img']
         ]);
         return redirect(route('updateitem', ['product_update_id' => $validated['update_item_ID']]))->with('update_item_success', 'Item sucessfully updated!');
+    }
+    public function adminAddItem(){
+        return view('adminPages.additem', ['title' => 'Add Item']);
+    }
+    public function addItemLogic(Request $req){
+        $validated = $req->validate([
+            'update_item_ID' => ['required', 'unique:products,item_id'],
+            'update_item_name' => ['required', 'unique:products,product_name', 'max:20'],
+            'update_item_price' => ['required', 'Integer', 'min:1000'],
+            'update_item_desc' => ['required', 'max:200'],
+            'update_item_category' => ['required', Rule::in(['Recycle', 'Second'])],
+            'update_item_img' => ['required', 'image']
+        ],);
+        if($req->file('update_item_img')){
+            $og_filename = $req->file('update_item_img')->getClientOriginalName();
+            $validated['update_item_img'] = $req->file('update_item_img')->storeAs('new-images', $og_filename);
+        }
+        DB::table('products')->insert([
+            'item_id' => $validated['update_item_ID'],
+            'product_name' => $validated['update_item_name'],
+            'price' => $validated['update_item_price'],
+            'description' => $validated['update_item_desc'],
+            'category' => $validated['update_item_category'],
+            'product_img' => $validated['update_item_img']
+        ]);
+        return redirect(route('additem'))->with('add_item_success', 'Item sucessfully added!');
     }
 }

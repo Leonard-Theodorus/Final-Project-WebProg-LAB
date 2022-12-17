@@ -28,32 +28,61 @@
             </thead>
             <tbody class="bg-yellow-100">
                 @foreach ($products as $product )
-                <tr class="border-b border-b-sky-900">
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->id}}</td>
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->item_id}}</td>
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">
-                        @if (str_starts_with($product->product_img , 'https'))
-                            <img style="width: 150px; height: 100px" src= {{$product->product_img}} alt="">
-                            <img src="" alt="">
-                        @else
-                            <img style="width: 150px; height: 100px" src= {{asset('storage/'. $product->product_img)}} alt="">
-                        @endif
-                    </td>
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->product_name}}</td>
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->description}}</td>
-                    <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->price}}</td>
-                    <td class="text-left py-3 border-r border-r-sky-900 px-4">{{$product->category}}</td>
-                    <td class="text-left py-3 px-4 flex space-x-4">
-                        <form action={{route('updateitem', ['product_update_id' => $product->item_id])}} method="GET">
-                            @csrf
-                            <button class="w-24 bg-yellow-300 rounded-md py-2 self-end hover:font-bold" type="submit">Update</button>
-                        </form>
-                        <form action={{route('viewitem',['product_delete' => $product->id] )}} method="post">
-                            @csrf
-                            <button class="w-24 bg-red-500 rounded-md py-2 self-end hover:font-bold" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                @if ($loop->iteration % 2 != 0)
+                    <tr class="border-b border-b-sky-900 bg-orange-100">
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$loop->iteration}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->item_id}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">
+                            @if (str_starts_with($product->product_img , 'https'))
+                                <img style="width: 150px; height: 100px" src= {{$product->product_img}} alt="">
+                                <img src="" alt="">
+                            @else
+                                <img style="width: 150px; height: 100px" src= {{asset('storage/'. $product->product_img)}} alt="">
+                            @endif
+                        </td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->product_name}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->description}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->price}}</td>
+                        <td class="text-left py-3 border-r border-r-sky-900 px-4">{{$product->category}}</td>
+                        <td class="text-left py-3 px-4 flex space-x-4">
+                            <form action={{route('updateitem', ['product_update_id' => $product->item_id])}} method="GET">
+                                @csrf
+                                <button class="w-24 bg-yellow-300 rounded-md py-2 self-end hover:font-bold" type="submit">Update</button>
+                            </form>
+                            <form action={{route('viewitem',['product_delete' => $product->id] )}} method="post">
+                                @csrf
+                                <button class="w-24 bg-red-500 rounded-md py-2 self-end hover:font-bold" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @else
+                    <tr class="border-b border-b-sky-900 bg-yellow-100">
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$loop->iteration}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->item_id}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">
+                            @if (str_starts_with($product->product_img , 'https'))
+                                <img style="width: 150px; height: 100px" src= {{$product->product_img}} alt="">
+                                <img src="" alt="">
+                            @else
+                                <img style="width: 150px; height: 100px" src= {{asset('storage/'. $product->product_img)}} alt="">
+                            @endif
+                        </td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->product_name}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->description}}</td>
+                        <td class="text-left py-3 px-4 border-r border-r-sky-900">{{$product->price}}</td>
+                        <td class="text-left py-3 border-r border-r-sky-900 px-4">{{$product->category}}</td>
+                        <td class="text-left py-3 px-4 flex space-x-4">
+                            <form action={{route('updateitem', ['product_update_id' => $product->item_id])}} method="GET">
+                                @csrf
+                                <button class="w-24 bg-yellow-300 rounded-md py-2 self-end hover:font-bold" type="submit">Update</button>
+                            </form>
+                            <form action={{route('viewitem',['product_delete' => $product->id] )}} method="post">
+                                @csrf
+                                <button class="w-24 bg-red-500 rounded-md py-2 self-end hover:font-bold" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endif
                 @endforeach
             </tbody>
         </table>

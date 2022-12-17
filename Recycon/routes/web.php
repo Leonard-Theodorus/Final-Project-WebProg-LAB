@@ -24,10 +24,18 @@ Route::get('/changepassword', [HomeController::class , 'changepassword'])->middl
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
 // Harus diubah.
-Route::view('/cart', 'userPages.cart', ['title'=> 'cart'])->name('cart');
-Route::view('/history', 'userPages.transactionhistory', ['title'=> 'transactionhistory'])->name('transactionhistory');
+Route::get('/cart', [ProductController::class, 'showcart'])->name('cart');
+Route::post('/cart', [ProductController::class ,'insert_to_cart']);
+Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart');
+Route::post('/cart/update/{item_id}', [ProductController::class, 'update_cart_logic']);
+Route::post('/cart/deleted', [ProductController::class, 'delete_cart_item'])->name('deletecart');
+Route::post('/cart/checkout', [ProductController::class, 'checkout'])->name('checkout');
+Route::get('/history', [ProductController::class, 'show_transaction_history'])->name('transactionhistory');
 
-Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem'); //tambahin admin middleware ->middleware('admin')
+Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem')->middleware('admin'); //tambahin admin middleware ->middleware('admin')
 Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);
-Route::get('/updateitem/{product_update_id}', [AdminController::class , 'adminUpdateItem'])->name('updateitem'); // tambahin admin middleware ->middleware('admin')
+Route::get('/updateitem/{product_update_id}', [AdminController::class , 'adminUpdateItem'])->name('updateitem')->middleware('admin'); // tambahin admin middleware ->middleware('admin')
 Route::post('/updateitem/{product_update_id}', [AdminController::class , 'updateItemLogic']);
+
+Route::get('/additem', [AdminController::class, 'adminAddItem'])->name('additem')->middleware('admin');
+Route::post('/additem', [AdminController::class, 'addItemLogic']);

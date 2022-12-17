@@ -16,15 +16,14 @@
             <h5 class="text-md">{{$product->description}}</h5>
             @auth
                 {{-- nanti dimasukin UI buat customer select quantity sama buy yang ke direct ke cart --}}
-                <form class="w-full flex mt-2 space-evenly" method="post" action= {{route('cart')}}>
+                <form class="w-full flex mt-2 space-evenly" method="post">
                     @csrf
                     <div class="flex flex-col">
                         <input type="hidden" type="text" name="product_id" value= {{$product->id}}>
-                        <input type="hidden" type="text" name="item_id" value= {{$product->item_id}}>
                         <label class="mb-2 font-semibold" for="quantity">Quantity:</label>
-                        <input class="w-16 border border-slate-500 rounded-md p-2" type="number" id="quantity" name="quantity" value="1" min="1" max="100">
+                        <input class="w-16 border border-slate-500 rounded-md p-2" type="number" id="quantity" name="quantity" value={{$product->quantity}} min="1" max="100">
                     </div>
-                    <button type="submit" class="ml-8 w-36 h-fit place-self-end rounded-md p-2 bg-yellow-400 font-semibold text-center">Add to cart</button>
+                    <button type="submit" class="ml-8 w-36 h-fit place-self-end rounded-md p-2 bg-yellow-400 font-semibold text-center">Update</button>
                 </form>
                 @else
                 <a href="/login" class="mt-8 w-36 rounded-md p-2 bg-yellow-400 font-semibold text-center">Login to buy</a>
