@@ -89,7 +89,7 @@
                     </div>
             @endforeach
             @else
-            <h2 class="font-normal text-lg mt-60 place-self-center">No Transactions!, Let's go shopping :)</h2>
+            <h2 class="font-normal text-lg mt-60 place-self-center">Transaction History is empty!, Let's go shopping :)</h2>
         @endif
     </div>
 @endsection

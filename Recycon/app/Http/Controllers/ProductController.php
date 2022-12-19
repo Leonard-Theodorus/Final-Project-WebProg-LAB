@@ -79,16 +79,11 @@ class ProductController extends Controller
         ]);
         $date = Carbon::now()->toDateString();
         foreach ($items as $item) {
-            $old_quantity = (Transaction::where('item_id', '=', $item->id)->first() )
-            ? Transaction::where('item_id', '=', $item->id)->first()->quantity: 0 ;
-            DB::table('transactions')->updateOrInsert(
-            [
-                'item_id' => $item->id
-            ],
+            DB::table('transactions')->insert(
             [
                 'user_id' => $user_id,
                 'item_id' => $item->id,
-                'quantity' => $item->quantity + $old_quantity,
+                'quantity' => $item->quantity,
                 'transaction_date' => $date
             ]);
         }
@@ -98,7 +93,7 @@ class ProductController extends Controller
 
     public function show_transaction_history(){
         $user_id = Auth()->user()->id;
-        $dates = DB::table('transactions')->select('transaction_date')->groupBy('transaction_date')->get();
+        $dates = DB::table('transactions')->select('transaction_date')->where('user_id', '=', $user_id)->groupBy('transaction_date')->get();
         $transactions = Transaction::join('products', 'products.id', '=', 'transactions.item_id')->where('user_id', '=', $user_id)->get([
             'products.product_name', 'products.product_img', 'products.price', 'transactions.quantity', 'transactions.transaction_date'
         ]);

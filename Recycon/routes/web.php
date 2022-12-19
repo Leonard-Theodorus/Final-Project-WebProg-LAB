@@ -23,13 +23,13 @@ Route::post('/editprofile', [HomeController::class , 'editprofileLogic']);
 Route::get('/changepassword', [HomeController::class , 'changepassword'])->middleware('auth')->name('changepassword');
 Route::post('/changepassword', [HomeController::class, 'changepasswordLogic']);
 
-Route::get('/cart', [ProductController::class, 'showcart'])->name('cart'); //tambahin middleware customer ->middleware('customer')
+Route::get('/cart', [ProductController::class, 'showcart'])->name('cart')->middleware('customer');
 Route::post('/cart', [ProductController::class ,'insert_to_cart']);
-Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart'); //tambahin middleware customer ->middleware('customer')
+Route::get('/cart/update/{item_id}', [ProductController::class , 'update_cart'])->name('updatecart')->middleware('customer');
 Route::post('/cart/update/{item_id}', [ProductController::class, 'update_cart_logic']);
-Route::post('/cart/deleted', [ProductController::class, 'delete_cart_item'])->name('deletecart'); //tambahin middleware customer ->middleware('customer')
-Route::post('/cart/checkout', [ProductController::class, 'checkout'])->name('checkout'); //tambahin middleware customer ->middleware('customer')
-Route::get('/history', [ProductController::class, 'show_transaction_history'])->name('transactionhistory'); //tambahin middleware customer ->middleware('customer')
+Route::post('/cart/deleted', [ProductController::class, 'delete_cart_item'])->name('deletecart')->middleware('customer');
+Route::post('/cart/checkout', [ProductController::class, 'checkout'])->name('checkout')->middleware('customer');
+Route::get('/history', [ProductController::class, 'show_transaction_history'])->name('transactionhistory')->middleware('customer');
 
 Route::get('/viewitem', [AdminController::class , 'adminViewItem'])->name('viewitem')->middleware('admin');
 Route::post('/viewitem', [AdminController::class , 'adminDeleteItem']);

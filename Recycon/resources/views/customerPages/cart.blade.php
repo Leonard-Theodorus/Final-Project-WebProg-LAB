@@ -39,11 +39,11 @@
                                 <th class="p-2 border-r border-r-sky-900 font-normal text-md">{{ $loop->iteration }}</th>
                                 @if (str_starts_with($cart_item->product_img, 'https'))
                                     <th class="p-2 border-r border-r-sky-900 font-normal text-md"><img
-                                            src="{{ $cart_item->product_img }}" alt="product Image" width="100px"
+                                            src={{ $cart_item->product_img }} alt="product Image" width="100px"
                                             height="50px"></th>
                                 @else
                                     <th class="p-2 border-r border-r-sky-900 font-normal text-md"><img
-                                            src="{{ asset('storage/' . $cart_item->product_img) }}}" alt="product Image"
+                                            src={{ asset('storage/' . $cart_item->product_img) }} alt="product Image"
                                             width="100px" height="50px"></th>
                                 @endif
                                 <th class="p-2 border-r border-r-sky-900 font-normal text-md"> {{ $cart_item->product_name }}

@@ -24,7 +24,7 @@
         @endcan
         <form action= {{route('search')}} class="flex space-x-4" role="search" method="post">
             @csrf
-            <input class="w-96 h-8 rounded-md pl-4" name="search_keyword" type="search" placeholder="Search" aria-label="Search">
+            <input class="w-96 h-8 rounded-md pl-4" name="search_keyword" type="search" placeholder="Search Product Keyword" aria-label="Search">
             <button class="py-1 px-2 border border-green-800 rounded-md hover:font-bold text-white" type="submit">Search</button>
         </form>
 
